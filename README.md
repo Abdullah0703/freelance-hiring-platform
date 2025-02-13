@@ -18,3 +18,11 @@ npm start
 cd backend
 npm install
 npm start
+```
+
+### Adding  Dummy Data in DB
+```sh
+goto the dbconnfig.js file
+uncomment the bulk create query
+then run the project
+```
