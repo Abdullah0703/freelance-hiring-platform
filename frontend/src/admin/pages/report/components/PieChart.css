@@ -1,0 +1,21 @@
+/* Custom styles for Chart.js legend */
+.chartjs-legend {
+    margin-bottom: 10px;
+  }
+  
+  .chartjs-legend li {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin: 5px;
+    background-color: #fff;
+  }
+  
+  /* Custom styles for Chart.js tooltips */
+  .chartjs-tooltip {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+  }
+  

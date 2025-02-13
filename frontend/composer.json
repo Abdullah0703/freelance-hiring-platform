@@ -1,0 +1,7 @@
+{
+    "name": "sdss/placeholder",
+    "description": "Placeholder package for deployment",
+    "type": "project",
+    "license": "MIT",
+    "require": {}
+}
