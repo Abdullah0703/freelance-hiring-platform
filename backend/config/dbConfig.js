@@ -22,6 +22,14 @@ const logger = winston.createLogger({
 
 const sequelize = new Sequelize({
   dialect: 'mysql',
+  dialect: 'mysql',
+  dialectOptions: {
+    charset: 'utf8mb4',
+  },
+  define: {
+    charset: 'utf8mb4',
+    collate: 'utf8mb4_unicode_ci',
+  },
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   username: process.env.DB_USER,
@@ -36,7 +44,7 @@ const sequelize = new Sequelize({
   try {
     await sequelize.sync({ force: false });
     // await sequelize.sync({ alter: true });
-    console.log('Tables available successfully');
+    // console.log('Tables available successfully');
     const Job = require('../app/models/jobModel');
     const User = require('../app/models/userModel');
     // await User.bulkCreate([
@@ -181,7 +189,7 @@ const sequelize = new Sequelize({
     //     billerId: 3
     //   },
     // ]);
-    console.log("done")
+    // console.log("done")
   } catch (err) {
     console.error('Error creating tables:', err);
   }

@@ -14,7 +14,7 @@ const Notifications = db.define('Notification', {
     allowNull: false
   },
   title: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false
   },
   description: {
