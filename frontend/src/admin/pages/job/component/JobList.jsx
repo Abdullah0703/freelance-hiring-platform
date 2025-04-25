@@ -170,7 +170,6 @@ const JobList = () => {
     );
   };
 
-
   const handleRecommendBillers = async (item, selectedBillers) => {
     console.log("Received Selected Billers:", selectedBillers);
     setBtnLoading(true);
@@ -621,9 +620,14 @@ const JobList = () => {
     try {
       const jobData = await getAllJobs();
       console.log("jobData", jobData);
-      setJobs(jobData.jobs);
-      console.log("JOb data from fetchjobs function", jobData);
-      console.log(jobData.jobs[0].billers);
+      if (!jobData.jobs || jobData.jobs.length === 0) {
+        console.log("No jobs available, 0 jobs");
+        setJobs([]);
+      } else {
+        setJobs(jobData.jobs);
+        console.log("Job data from fetchJobs function", jobData);
+        console.log(jobData.jobs[0].billers);
+      }
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching jobs:", error);
@@ -713,171 +717,177 @@ const JobList = () => {
       </Flex>
 
       <Box overflowX="auto">
-        <Table variant="simple" size={"md"}>
-          <Thead>
-            <Tr>
-              <Th>Title</Th>
-              <Th>Description</Th>
-              <Th>Start Date</Th>
-              <Th>Payment Terms</Th>
-              <Th>Duration</Th>
-              <Th>Required Skills</Th>
-              <Th>Meeting Details</Th>
-              <Th>Assinged Billers</Th>
-              <Th>Budget</Th>
-              <Th>Status</Th>
-              <Th>Actions</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {currentItems.map((item) => (
-              <Tr key={item.userId}>
-                <Td>{item.title}</Td>
-                <Td>{item.description}</Td>
-                <Td>{item.startDate}</Td>
-                <Td>{item.paymentTerms}</Td>
-                <Td>{item.duration}</Td>
-                <Td>{item.skills}</Td>
-                {/* <Td>{item.billers.userName}</Td> */}
-                <Td>
-                  {!(item.status === "COMPLETED" || item.status === "ABORTED") && (
-                    <Button
-                      colorScheme="whatsapp"
-                      size="sm"
-                      variant="solid"
-                      borderRadius="md"
-                      fontSize="sm"
-                      px={2}
-                      py={1}
-                      onClick={() => handleMeetingDetails(item)}
-                    >
-                      View
-                    </Button>
-                  )}
-                </Td>
-                <Td>
-                  {role !== "BILLER" && item.status !== "COMPLETED" && item.status !== "ABORTED" && (
-                    <Button
-                      colorScheme="whatsapp"
-                      size="sm"
-                      variant="solid"
-                      borderRadius="md"
-                      fontSize="sm"
-                      px={2}
-                      py={1}
-                      onClick={() => handleAssignedBillers(item)}
-                    >
-                      View
-                    </Button>
-                  )}
-                </Td>
-                <Td>{item.budget}$</Td>
-                <Td><Badge colorScheme={statusColors[item.status]}
-                  borderRadius="md"
-                > {item.status.replace(/_/g, ' ')} </Badge></Td> {/*.replace(/_/g, ' ')*/}
-                <Td>
-                  {!(role === "CLIENT" && (item.status === "COMPLETED" || item.status === "ABORTED")) &&
-                    !(role === "ADMIN" && (item.status === "COMPLETED" || item.status === "ABORTED")) && (
-                      <Menu>
-                        <MenuButton
-                          as={IconButton}
-                          icon={<HiDotsVertical />}
-                          variant="ghost"
-                          size="sm"
-                        />
-                        <MenuList>
-                          {role === "CLIENT" && item.status !== "COMPLETED" && item.status !== "ABORTED" && (
-                            <MenuItem
-                              icon={<FiEdit />}
-                              onClick={() => openDrawer("edit", item)}
-                            >
-                              Edit
-                            </MenuItem>
-                          )}
-                          {role === "CLIENT" && item.status !== "COMPLETED" && item.status !== "ABORTED" && (
-                            <MenuItem
-                              icon={<FiTrash2 />}
-                              onClick={() => handleDeleteClick(item)}
-                              isLoading={btnLoading}
-                            >
-                              Delete
-                            </MenuItem>
-                          )}
-                          {role === "CLIENT" && item.status !== "COMPLETED" && item.status !== "ABORTED" && (
-                            <MenuItem
-                              icon={<BiSupport />}
-                              onClick={() => handleSupport(item)}
-                              isLoading={btnLoading}
-                            >
-                              Support
-                            </MenuItem>
-                          )}
-                          {role === "CLIENT" && item.status === "INTERVIEW_SCHEDULED" && (
-                            <MenuItem
-                              icon={<FiUser />}
-                              onClick={() => openDrawer("viewRecommended", item)}
-                            >
-                              View Profiles
-                            </MenuItem>
-                          )}
-                          {role === "CLIENT" && item.status === "FINALIZED" && (
-                            <MenuItem
-                              icon={<FiCheck />}
-                              onClick={() => onCompleteClick(item)}
-                            >
-                              Completed
-                            </MenuItem>
-                          )}
-                          {role === "CLIENT" && item.status === "FINALIZED" && (
-                            <MenuItem
-                              icon={<FiMinusCircle />}
-                              onClick={() => onAbortClick(item)}
-                            >
-                              Abort
-                            </MenuItem>
-                          )}
-                          {role === "ADMIN" && item.status === "AWAITING_CONFIRMATION" && (
-                            <MenuItem
-                              icon={<FiCalendar />}
-                              onClick={() => handleScheduleMeeting(item)}
-                              isLoading={btnLoading}
-                            >
-                              Schedule Meeting
-                            </MenuItem>
-                          )}
-                          {role === "ADMIN" && item.status === "INITIAL_MEETING_SCHEDULED" && (
-                            <MenuItem
-                              icon={<FiCalendar />}
-                              onClick={() => onSearchCandidateClick(item)}
-                            >
-                              Search Candidate
-                            </MenuItem>
-                          )}
-                          {role === "ADMIN" && item.status === "INTERVIEW_SCHEDULED" && (
-                            <MenuItem
-                              icon={<FiCalendar />}
-                              onClick={() => onFinalizeClick(item)}
-                            >
-                              Finalize
-                            </MenuItem>
-                          )}
-                          {role === "ADMIN" && item.status === "SEARCHING_CANDIDATE" && (
-                            <MenuItem
-                              icon={<FiCalendar />}
-                              onClick={() => handleScheduleMeeting(item)}
-                              isLoading={btnLoading}
-                            >
-                              Recommend Candidates
-                            </MenuItem>
-                          )}
-                        </MenuList>
-                      </Menu>
-                    )}
-                </Td>
+        {currentItems.length === 0 ? (
+          <Text textAlign="center" py={4}>
+            No jobs available (0 jobs)
+          </Text>
+        ) : (
+          <Table variant="simple" size={"md"}>
+            <Thead>
+              <Tr>
+                <Th>Title</Th>
+                <Th>Description</Th>
+                <Th>Start Date</Th>
+                <Th>Payment Terms</Th>
+                <Th>Duration</Th>
+                <Th>Required Skills</Th>
+                <Th>Meeting Details</Th>
+                <Th>Assinged Billers</Th>
+                <Th>Budget</Th>
+                <Th>Status</Th>
+                <Th>Actions</Th>
               </Tr>
-            ))}
-          </Tbody>
-        </Table>
+            </Thead>
+            <Tbody>
+              {currentItems.map((item) => (
+                <Tr key={item.userId}>
+                  <Td>{item.title}</Td>
+                  <Td>{item.description}</Td>
+                  <Td>{item.startDate}</Td>
+                  <Td>{item.paymentTerms}</Td>
+                  <Td>{item.duration}</Td>
+                  <Td>{item.skills}</Td>
+                  {/* <Td>{item.billers.userName}</Td> */}
+                  <Td>
+                    {!(item.status === "COMPLETED" || item.status === "ABORTED") && (
+                      <Button
+                        colorScheme="whatsapp"
+                        size="sm"
+                        variant="solid"
+                        borderRadius="md"
+                        fontSize="sm"
+                        px={2}
+                        py={1}
+                        onClick={() => handleMeetingDetails(item)}
+                      >
+                        View
+                      </Button>
+                    )}
+                  </Td>
+                  <Td>
+                    {role !== "BILLER" && item.status !== "COMPLETED" && item.status !== "ABORTED" && (
+                      <Button
+                        colorScheme="whatsapp"
+                        size="sm"
+                        variant="solid"
+                        borderRadius="md"
+                        fontSize="sm"
+                        px={2}
+                        py={1}
+                        onClick={() => handleAssignedBillers(item)}
+                      >
+                        View
+                      </Button>
+                    )}
+                  </Td>
+                  <Td>{item.budget}$</Td>
+                  <Td><Badge colorScheme={statusColors[item.status]}
+                    borderRadius="md"
+                  > {item.status.replace(/_/g, ' ')} </Badge></Td> {/*.replace(/_/g, ' ')*/}
+                  <Td>
+                    {!(role === "CLIENT" && (item.status === "COMPLETED" || item.status === "ABORTED")) &&
+                      !(role === "ADMIN" && (item.status === "COMPLETED" || item.status === "ABORTED")) && (
+                        <Menu>
+                          <MenuButton
+                            as={IconButton}
+                            icon={<HiDotsVertical />}
+                            variant="ghost"
+                            size="sm"
+                          />
+                          <MenuList>
+                            {role === "CLIENT" && item.status !== "COMPLETED" && item.status !== "ABORTED" && (
+                              <MenuItem
+                                icon={<FiEdit />}
+                                onClick={() => openDrawer("edit", item)}
+                              >
+                                Edit
+                              </MenuItem>
+                            )}
+                            {role === "CLIENT" && item.status !== "COMPLETED" && item.status !== "ABORTED" && (
+                              <MenuItem
+                                icon={<FiTrash2 />}
+                                onClick={() => handleDeleteClick(item)}
+                                isLoading={btnLoading}
+                              >
+                                Delete
+                              </MenuItem>
+                            )}
+                            {role === "CLIENT" && item.status !== "COMPLETED" && item.status !== "ABORTED" && (
+                              <MenuItem
+                                icon={<BiSupport />}
+                                onClick={() => handleSupport(item)}
+                                isLoading={btnLoading}
+                              >
+                                Support
+                              </MenuItem>
+                            )}
+                            {role === "CLIENT" && item.status === "INTERVIEW_SCHEDULED" && (
+                              <MenuItem
+                                icon={<FiUser />}
+                                onClick={() => openDrawer("viewRecommended", item)}
+                              >
+                                View Profiles
+                              </MenuItem>
+                            )}
+                            {role === "CLIENT" && item.status === "FINALIZED" && (
+                              <MenuItem
+                                icon={<FiCheck />}
+                                onClick={() => onCompleteClick(item)}
+                              >
+                                Completed
+                              </MenuItem>
+                            )}
+                            {role === "CLIENT" && item.status === "FINALIZED" && (
+                              <MenuItem
+                                icon={<FiMinusCircle />}
+                                onClick={() => onAbortClick(item)}
+                              >
+                                Abort
+                              </MenuItem>
+                            )}
+                            {role === "ADMIN" && item.status === "AWAITING_CONFIRMATION" && (
+                              <MenuItem
+                                icon={<FiCalendar />}
+                                onClick={() => handleScheduleMeeting(item)}
+                                isLoading={btnLoading}
+                              >
+                                Schedule Meeting
+                              </MenuItem>
+                            )}
+                            {role === "ADMIN" && item.status === "INITIAL_MEETING_SCHEDULED" && (
+                              <MenuItem
+                                icon={<FiCalendar />}
+                                onClick={() => onSearchCandidateClick(item)}
+                              >
+                                Search Candidate
+                              </MenuItem>
+                            )}
+                            {role === "ADMIN" && item.status === "INTERVIEW_SCHEDULED" && (
+                              <MenuItem
+                                icon={<FiCalendar />}
+                                onClick={() => onFinalizeClick(item)}
+                              >
+                                Finalize
+                              </MenuItem>
+                            )}
+                            {role === "ADMIN" && item.status === "SEARCHING_CANDIDATE" && (
+                              <MenuItem
+                                icon={<FiCalendar />}
+                                onClick={() => handleScheduleMeeting(item)}
+                                isLoading={btnLoading}
+                              >
+                                Recommend Candidates
+                              </MenuItem>
+                            )}
+                          </MenuList>
+                        </Menu>
+                      )}
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        )}
       </Box>
       <Flex justify="space-between" mt={4} align="center">
         <Box>
