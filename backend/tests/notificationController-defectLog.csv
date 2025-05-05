@@ -1,0 +1,116 @@
+Defect ID,Test File,Test Case,Description,Stack Trace,Status
+"D001","C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js","NotificationController notifyJobStatusChange should throw error if job not found","Error: expect(received).rejects.toThrow(expected)","Expected substring: ""Job not found""
+Received message:   ""Failed to notify job status change""
+
+      205 |         } catch (error) {
+      206 |             console.error('Error notifying job status change:', error);
+    > 207 |             throw new Error('Failed to notify job status change');
+          |                   ^
+      208 |         }
+      209 |     }
+      210 |     //Notify Finalized Billers for the Job
+
+      at Function.notifyJobStatusChange (app/controllers/notificationController.js:207:19)
+      at Object.<anonymous> (tests/notificationController.test.js:108:13)
+    at Object.toThrow (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\expect\build\index.js:218:22)
+    at Object.toThrow (C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js:108:83)
+    at Promise.then.completed (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-runner\build\runTest.js:444:34)","Open"
+"D002","C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js","NotificationController notifyClientMeetAdmin should throw error if job not found","Error: expect(received).rejects.toThrow()","Received promise resolved instead of rejected
+Resolved to value: undefined
+    at expect (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\expect\build\index.js:113:15)
+    at Object.expect (C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js:189:19)
+    at Promise.then.completed (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-runner\build\runTest.js:444:34)","Open"
+"D003","C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js","NotificationController - Additional Edge Cases createNotification should throw error if title is missing","Error: expect(received).rejects.toThrow()","Received promise resolved instead of rejected
+Resolved to value: {}
+    at expect (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\expect\build\index.js:113:15)
+    at Object.expect (C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js:306:19)
+    at Promise.then.completed (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-runner\build\runTest.js:444:34)","Open"
+"D004","C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js","NotificationController - Additional Edge Cases createNotification should throw error if description is missing","Error: expect(received).rejects.toThrow()","Received promise resolved instead of rejected
+Resolved to value: {}
+    at expect (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\expect\build\index.js:113:15)
+    at Object.expect (C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js:310:19)
+    at Promise.then.completed (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-runner\build\runTest.js:444:34)","Open"
+"D005","C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js","NotificationController - Additional Edge Cases createNotification should throw error if type is missing","Error: expect(received).rejects.toThrow()","Received promise resolved instead of rejected
+Resolved to value: {}
+    at expect (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\expect\build\index.js:113:15)
+    at Object.expect (C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js:314:19)
+    at Promise.then.completed (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\User\Desktop\Freelance Hiring Platform\backend\node_modules\jest-runner\build\runTest.js:444:34)","Open"
+"D006","C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js","NotificationController - Additional Edge Cases markNotificationAsRead should not call save if notification is already read","Error: expect(jest.fn()).not.toHaveBeenCalled()","Expected number of calls: 0
+Received number of calls: 1
+
+1: called with 0 arguments
+    at Object.toHaveBeenCalled (C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js:335:30)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)","Open"
+"D007","C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js","NotificationController - Additional Edge Cases sendResolveTicketNotificationToClient should not throw if client has no userId","Error: User ID is required","at Function.createNotification (C:\Users\User\Desktop\Freelance Hiring Platform\backend\app\controllers\notificationController.js:15:23)
+    at Function.createNotification [as sendResolveTicketNotificationToClient] (C:\Users\User\Desktop\Freelance Hiring Platform\backend\app\controllers\notificationController.js:404:24)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js:412:13)","Open"
+"D008","C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js","NotificationController - Additional Edge Cases sendResolveTicketNotificationToAdmin should not throw if admins have no userId","Error: User ID is required","at Function.createNotification (C:\Users\User\Desktop\Freelance Hiring Platform\backend\app\controllers\notificationController.js:15:23)
+    at Function.createNotification [as sendResolveTicketNotificationToAdmin] (C:\Users\User\Desktop\Freelance Hiring Platform\backend\app\controllers\notificationController.js:435:28)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (C:\Users\User\Desktop\Freelance Hiring Platform\backend\tests\notificationController.test.js:423:13)","Open"

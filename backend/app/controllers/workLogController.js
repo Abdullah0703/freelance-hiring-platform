@@ -9,6 +9,33 @@ class WorkLogController {
     try {
       const { billerId, date, jobId, taskDescription, hoursLog } = req.body;
 
+      // Validate required fields
+      if (!billerId || !jobId || !taskDescription || !date || hoursLog === undefined) {
+        return res.status(400).json({ success: false, message: 'Missing required fields' });
+      }
+
+      // Validate hoursLog is a non-negative integer
+      if (typeof hoursLog !== 'number' || isNaN(hoursLog) || hoursLog < 0) {
+        return res.status(400).json({ success: false, message: 'Invalid hoursLog' });
+      }
+
+      // Validate date format
+      if (isNaN(Date.parse(date))) {
+        return res.status(400).json({ success: false, message: 'Invalid date format' });
+      }
+
+      // Check if biller exists and is a BILLER
+      const biller = await User.findByPk(billerId);
+      if (!biller || biller.role !== 'BILLER') {
+        return res.status(400).json({ success: false, message: 'Invalid billerId' });
+      }
+
+      // Check if job exists
+      const job = await Job.findByPk(jobId);
+      if (!job) {
+        return res.status(400).json({ success: false, message: 'Invalid jobId' });
+      }
+
       const workLog = await WorkLog.create({
         billerId,
         jobId,
@@ -21,6 +48,10 @@ class WorkLogController {
       return res.status(201).json({ success: true, workLog });
     } catch (error) {
       console.error('Error creating work log:', error);
+      // Return 400 for Sequelize validation errors
+      if (error.name === 'SequelizeValidationError') {
+        return res.status(400).json({ success: false, message: error.message });
+      }
       return res.status(500).json({ success: false, message: 'Failed to create work log', error: error.message });
     }
   }

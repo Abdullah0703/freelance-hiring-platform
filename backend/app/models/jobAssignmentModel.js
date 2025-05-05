@@ -2,8 +2,6 @@
 
 const { DataTypes } = require('sequelize');
 const db = require('../../config/dbConfig');
-const User = require('./userModel');
-const Job = require('./jobModel'); 
 
 const JobAssignment = db.define('JobAssignment', {
   jobAssignmentId: {
@@ -15,34 +13,22 @@ const JobAssignment = db.define('JobAssignment', {
   jobId: {
     type: DataTypes.INTEGER,
     references: {
-      model: Job,
-      key : 'jobId'
+      model: 'Jobs', // Use string to avoid circular dependency
+      key: 'jobId'
     },
   },
   billerId: {
     type: DataTypes.INTEGER,
     references: {
-      model: User, 
-      key : 'userId'
-    },
-    validate: {
-      async isBiller(value) {
-        const user = await User.findByPk(value);
-        const isBiller = user && user.role === 'BILLER';
-        if (!isBiller) {
-          throw new Error('Only billers can be assigned jobs');
-        }
-      },
-    },
+      model: 'Users', // Use string to avoid circular dependency
+      key: 'userId'
+    }
+    // Remove validation here, handle in hooks or controller
   },
 }, {
   timestamps: true
 });
 
-Job.belongsToMany(User, { through: JobAssignment, foreignKey: 'jobId', as: 'billers' })
-User.belongsToMany(Job, { through: JobAssignment, foreignKey: 'billerId', as: 'assignedJobs' })
-
-JobAssignment.belongsTo(Job, { foreignKey: 'jobId' });  
-JobAssignment.belongsTo(User, { foreignKey: 'billerId' });
+// Remove all association code from here
 
 module.exports = JobAssignment;

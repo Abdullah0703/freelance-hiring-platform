@@ -78,17 +78,16 @@ const Job = db.define('Job', {
   paranoid: true
 });
 
-Job.belongsTo(User, { foreignKey: 'clientId', as: 'client' })
-User.hasMany(Job, { foreignKey: 'clientId', as: 'postings' });
+// Remove these lines from here:
+// Job.belongsTo(User, { foreignKey: 'clientId', as: 'client' })
+// User.hasMany(Job, { foreignKey: 'clientId', as: 'postings' });
 
+// Register the beforeCreate hook properly:
 Job.beforeCreate(async (job) => {
-  console.log("user: ", job);
   const user = await User.findByPk(job.clientId);
   if (!user || user.role !== 'CLIENT') {
-    console.log("clientId: ", user)
     throw new Error('Only clients can create jobs');
   }
 });
-
 
 module.exports = Job;

@@ -23,7 +23,7 @@ const jobAssignmentRoutes = require('./app/routes/jobAssignmentRoutes');
 const workLogRoutes = require('./app/routes/workLogRoutes');
 const TicketRoutes = require('./app/routes/ticketRoutes.js');
 const notificationRoutes = require('./app/routes/notificationRoutes.js');
-const dashboardRoutes= require('./app/routes/dashboardRoutes.js')
+const dashboardRoutes = require('./app/routes/dashboardRoutes.js')
 
 
 const logRequests = (req, res, next) => {
@@ -55,13 +55,16 @@ app.use("/feedback", feedbackRoutes);
 app.use("/job", jobRoutes);
 app.use("/jobAssignment", jobAssignmentRoutes);
 app.use("/workLog", workLogRoutes);
-app.use("/Ticket",TicketRoutes)
-app.use("/api",notificationRoutes)
+app.use("/Ticket", TicketRoutes)
+app.use("/api", notificationRoutes)
 app.use("/dashboard", dashboardRoutes);
 
 
 const PORT_BACKEND = process.env.PORT_BACKEND;
-app.listen(PORT_BACKEND, () => {
-  console.log(`Server is running on ${process.env.URL_BACKEND}`);
-  console.log(`Database Name: ${process.env.DB_NAME}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT_BACKEND, () => {
+    console.log(`Server is running on ${process.env.URL_BACKEND}`);
+    console.log(`Database Name: ${process.env.DB_NAME}`);
+  });
+}
+module.exports = app;

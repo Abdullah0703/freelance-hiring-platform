@@ -2,9 +2,6 @@
 
 const { DataTypes } = require('sequelize');
 const db = require('../../config/dbConfig');
-const User = require('./userModel');
-const Job = require('./jobModel');
-const JobAssignment = require('./jobAssignmentModel');
 
 const Notifications = db.define('Notification', {
   notificationId: {
@@ -39,27 +36,15 @@ const Notifications = db.define('Notification', {
   },
   userId: {
     type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: User,
-      key: 'userId'
-    }
+    allowNull: false
   },
   jobId: {
     type: DataTypes.INTEGER,
-    allowNull: true,
-    references: {
-      model: Job,
-      key: 'jobId'
-    }
+    allowNull: true
   },
   jobAssignmentId: {
     type: DataTypes.INTEGER,
-    allowNull: true,
-    references: {
-      model: JobAssignment,
-      key: 'jobAssignmentId'
-    }
+    allowNull: true
   },
   read: {
     type: DataTypes.BOOLEAN,
@@ -74,10 +59,5 @@ const Notifications = db.define('Notification', {
   timestamps: true,
   paranoid: true
 });
-
-// Associations
-Notifications.belongsTo(User, { foreignKey: 'userId', as: 'user' });
-Notifications.belongsTo(Job, { foreignKey: 'jobId', as: 'job' });
-Notifications.belongsTo(JobAssignment, { foreignKey: 'jobAssignmentId', as: 'jobAssignment' });
 
 module.exports = Notifications;

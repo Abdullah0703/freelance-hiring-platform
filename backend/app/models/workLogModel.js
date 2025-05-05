@@ -37,20 +37,20 @@ const WorkLog = db.define('WorkLog', {
   timestamps: true
 });
 
-WorkLog.belongsTo(User, { foreignKey: 'billerId', allowNull: false })
-User.hasMany(WorkLog, { foreignKey: 'billerId' })
+// Remove these lines from here:
+// WorkLog.belongsTo(User, { foreignKey: 'billerId', allowNull: false })
+// User.hasMany(WorkLog, { foreignKey: 'billerId' })
+// WorkLog.belongsTo(Job, { foreignKey: 'jobId', allowNull: false })
+// Job.hasMany(WorkLog, { foreignKey: 'jobId' })
 
-WorkLog.belongsTo(Job, { foreignKey: 'jobId', allowNull: false })
-Job.hasMany(WorkLog, { foreignKey: 'jobId' })
-
-WorkLog.beforeCreate(async (workLog) => {
-  const user = await User.findByPk(workLog.billerId);
-  console.log("user: ", user)
-  console.log("user: ", user)
-  if (!user || user.role !== 'BILLER') {
-    throw new Error('Only Billers add workLogs');
-  }
-});
+// WorkLog.beforeCreate(async (workLog) => {
+//   const user = await User.findByPk(workLog.billerId);
+//   console.log("user: ", user)
+//   console.log("user: ", user)
+//   if (!user || user.role !== 'BILLER') {
+//     throw new Error('Only Billers add workLogs');
+//   }
+// });
 
 
 module.exports = WorkLog;

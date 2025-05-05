@@ -42,7 +42,8 @@ const Ticket = db.define('Ticket', {
   paranoid: true
 });
 
-Job.hasMany(Ticket, { foreignKey: 'jobId' });
-Ticket.belongsTo(Job, { foreignKey: 'jobId' });
+// REMOVE these lines from here:
+// Job.hasMany(Ticket, { foreignKey: 'jobId' });
+// Ticket.belongsTo(Job, { foreignKey: 'jobId' });
 
 module.exports = Ticket;
