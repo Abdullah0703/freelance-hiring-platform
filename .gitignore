@@ -1,0 +1,9 @@
+# Ignore opencode artifacts
+.opencode/
+opencode.json
+
+# Ignore frontend environment variables
+frontend/.env
+
+# Ignore backend environment variables
+backend/.env
